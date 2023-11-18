@@ -26,3 +26,108 @@ h1{
   padding-bottom: 25px;
   margin-bottom: 25px;
 }
+.input-item
+{
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+  margin-right:25px;
+
+}
+.input-item label{
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+.input-item input{
+  padding:8px;
+  border:none;
+  width:300px;
+}
+.input-item input:focus{
+  outline:2px solid blue;
+}
+
+.primaryBtn{
+  background-color: blue;
+  height: 45px;
+  width:90px;
+  border-color: aliceblue;
+  border-radius: 0.5rem;
+  font-weight: bolder;
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  padding: 8px;
+  margin-top: 30px;
+  cursor:pointer;
+  color:aliceblue;
+}
+.primaryBtn:hover{
+background-color: rgb(36, 36, 134);  
+}
+
+.secondaryBtn{
+  background-color: rgba(20, 239, 56, 0.614);
+  height: 45px;
+  width:90px;
+  border-color: aliceblue;
+  border-radius: 0.25rem;
+  font-weight: bolder;
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  padding: 8px;
+  margin-top: 30px;
+  cursor:pointer;
+  color:aliceblue;
+}
+.active
+{
+  background-color: blue;
+}
+.todo-list{
+display: flex;
+flex-direction: column;
+}
+.btn-area
+{
+  margin-bottom: 20px;
+}
+.todo-list-item{
+  background-color: rgb(52, 50, 50);
+  display:flex;
+  color:rgb(238, 238, 240);
+  justify-content: space-between;
+  padding: 15px;
+  align-items: center;
+  padding-bottom: 5px;
+  padding-top: 5px;
+}
+.todo-list-item h3{
+  font-size: 25px;
+  color:rgba(20, 239, 56, 0.614);
+  font-weight: bold;
+  margin:0;
+
+}
+.todo-list-item p{
+  font-size: 14px;
+  color:aliceblue;
+  margin-top: 8px ;
+}
+
+.icon{
+  font-size: 35px;
+  cursor:pointer;
+   /* color:red; */
+}
+.icon-hover{
+  color:red;
+}
+.check-icon
+{
+  font-size: 25px;
+  margin-left: 10px;
+  color:rgba(20, 239, 56, 0.614);
+  cursor: pointer;
+}
+
+.check-icon-hover{
+  color:green;
+}
