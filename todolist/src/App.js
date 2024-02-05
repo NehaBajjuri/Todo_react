@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import "./App.css";
 import { MdDelete } from "react-icons/md";
 import { BsCheckLg } from "react-icons/bs";
@@ -7,6 +7,7 @@ function App() {
  const[allTodos,setTodos] = useState([]);
  const[newTitle,setNewTitle]= useState("");
  const[newDescription,setnewDescription] = useState("");
+ const [completedTodos,setCompletedTodos] = useState([]);
 
  const handleAddTodo = ()=>{
   let newTodoItem = {
@@ -16,11 +17,45 @@ function App() {
   let updatedTodoArr =[...allTodos];
   updatedTodoArr.push(newTodoItem);
   setTodos(updatedTodoArr);
+  localStorage.setItem('todolist',JSON.stringify(updatedTodoArr));//stores array as a string
+  
+ };
 
+const handleDeleteTodo = (index)=>
+{
+  let reducedTodo = [...allTodos];
+  reducedTodo.splice(index);
+  localStorage.setItem('todolist',JSON.stringify(reducedTodo));
+  setTodos(reducedTodo);
+}
+const handleComplete =(index)=>{
+  let now = new Date();
+  let dd = now.getDate();
+ let mm = now.getMonth()+1;
+ let yyyy = now.getFullYear();
+ let h = now.getHours();
+ let m = now.getMinutes();
+ let s = now.getSeconds();
 
+ let completedOn = dd + '-'+mm+'-'+yyyy+' at '+h+':'+m+':'+s;
+
+ let filteredItem = {
+  ...allTodos[index],completedOn:completedOn
  }
 
+ let updatedCompletedArr = [...completedTodos];
+ updatedCompletedArr.push(filteredItem);
+ setCompletedTodos(updatedCompletedArr);
 
+}
+
+useEffect(()=>{
+  let savedTodo = JSON.parse(localStorage.getItem('todolist'));
+  if(savedTodo)
+  {
+    setTodos(savedTodo);
+  }
+},[])
 
 
   return (
@@ -58,6 +93,7 @@ function App() {
           </button>
         </div>
         <div className="todo-list">
+          
           {allTodos.map((item,index)=>{
             return(
               <div className="todo-list-item" key = {index}>
@@ -67,8 +103,13 @@ function App() {
          </div>
           
           <div>
-           <MdDelete className="icon"/>
-           <BsCheckLg className="check-icon"/>
+           <MdDelete className="icon" onClick={()=>
+           handleDeleteTodo(index)
+           
+           }/>
+           <BsCheckLg className="check-icon" onClick={()=>
+          handleComplete(index)
+          }/>
           </div>
           </div>
             )
