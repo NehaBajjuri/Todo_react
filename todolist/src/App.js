@@ -49,10 +49,17 @@ const handleComplete =(index)=>{
  handleDeleteTodo(index);
  localStorage.setItem('completedTodos',JSON.stringify(updatedCompletedArr));
 }
+const handleDeleteCompletedTodo =(index)=>
+{
+  let reducedTodo = [...completedTodos];
+  reducedTodo.splice(index);
+  localStorage.setItem('completedTodos',JSON.stringify(reducedTodo));
+  setCompletedTodos(reducedTodo);
+}
 
 useEffect(()=>{
   let savedTodo = JSON.parse(localStorage.getItem('todolist'));
-  let savedCompletedTodo = JSON.parse(localStorage.getItem('completedTodo'));
+  let savedCompletedTodo = JSON.parse(localStorage.getItem('completedTodos'));
   if(savedTodo)
   {
     setTodos(savedTodo);
@@ -131,7 +138,7 @@ if(savedCompletedTodo)
           
           <div>
            <MdDelete className="icon" onClick={()=>
-           handleDeleteTodo(index)
+           handleDeleteCompletedTodo(index)
            
            }/>
           
