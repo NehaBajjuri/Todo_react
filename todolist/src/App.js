@@ -46,7 +46,7 @@ const handleComplete =(index)=>{
  let updatedCompletedArr = [...completedTodos];
  updatedCompletedArr.push(filteredItem);
  setCompletedTodos(updatedCompletedArr);
-
+ handleDeleteTodo(index);
 }
 
 useEffect(()=>{
@@ -93,8 +93,8 @@ useEffect(()=>{
           </button>
         </div>
         <div className="todo-list">
-          
-          {allTodos.map((item,index)=>{
+
+          {isCompleteScreen===false && allTodos.map((item,index)=>{
             return(
               <div className="todo-list-item" key = {index}>
            <div>
@@ -110,6 +110,25 @@ useEffect(()=>{
            <BsCheckLg className="check-icon" onClick={()=>
           handleComplete(index)
           }/>
+          </div>
+          </div>
+            )
+          })}
+          {isCompleteScreen===true && completedTodos.map((item,index)=>{
+            return(
+              <div className="todo-list-item" key = {index}>
+           <div>
+            <h3>{item.title}</h3>
+            <p>{item.description}</p>
+            <p><i>Completed on :{item.completedOn}</i></p>
+         </div>
+          
+          <div>
+           <MdDelete className="icon" onClick={()=>
+           handleDeleteTodo(index)
+           
+           }/>
+          
           </div>
           </div>
             )
