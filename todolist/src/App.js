@@ -27,7 +27,7 @@ const handleDeleteTodo = (index)=>
   reducedTodo.splice(index);
   localStorage.setItem('todolist',JSON.stringify(reducedTodo));
   setTodos(reducedTodo);
-}
+};
 const handleComplete =(index)=>{
   let now = new Date();
   let dd = now.getDate();
@@ -41,20 +41,26 @@ const handleComplete =(index)=>{
 
  let filteredItem = {
   ...allTodos[index],completedOn:completedOn
- }
+ };
 
  let updatedCompletedArr = [...completedTodos];
  updatedCompletedArr.push(filteredItem);
  setCompletedTodos(updatedCompletedArr);
  handleDeleteTodo(index);
+ localStorage.setItem('completedTodos',JSON.stringify(updatedCompletedArr));
 }
 
 useEffect(()=>{
   let savedTodo = JSON.parse(localStorage.getItem('todolist'));
+  let savedCompletedTodo = JSON.parse(localStorage.getItem('completedTodo'));
   if(savedTodo)
   {
     setTodos(savedTodo);
   }
+if(savedCompletedTodo)
+{
+  setCompletedTodos(savedCompletedTodo);
+}
 },[])
 
 
